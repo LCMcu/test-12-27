@@ -38,7 +38,6 @@ int main(int argc, char **argv)
     {
         fprintf(stdout, "Table created successfully\n");
     }
-
     sqlite3_close(db); //关闭数据库
     return 0;
 }

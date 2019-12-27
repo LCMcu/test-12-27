@@ -26,7 +26,7 @@ int main(int argc, char **argv)
           "AGE            INT     NOT NULL,"
           "ADDRESS        CHAR(50),"
           "SALARY         REAL );";
-
+/****/
     /* Execute SQL statement */
     ret = sqlite3_exec(db, sql, NULL, 0, &zErrMsg);
     if (ret != SQLITE_OK)

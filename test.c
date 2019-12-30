@@ -26,7 +26,7 @@ int main(int argc, char **argv)
           "AGE            INT     NOT NULL,"
           "ADDRESS        CHAR(50),"
           "SALARY         REAL );";
-/****//*12346*/
+
     /* Execute SQL statement */
     ret = sqlite3_exec(db, sql, NULL, 0, &zErrMsg);
     if (ret != SQLITE_OK)
@@ -41,4 +41,31 @@ int main(int argc, char **argv)
     sqlite3_close(db); //关闭数据库
     return 0;
 }
-/**//**//**/
+
+int creat_table(sqlite3 *db, char *table)
+{
+    int ret=0;
+    char sql[128]={0};
+    char *errmsg=NULL;
+    
+    fprintf(sql, "create table if not exists mytable (id integer primary key,name text);");
+	ret = sqlite3_exec(db,sql,NULL,NULL,&errmsg);
+ 
+	if(ret != SQLITE_OK)
+	{
+		printf("create table error : %s\n",errmsg);
+		exit(-1);
+	}
+
+    return 0;
+}
+
+int insert_data()
+{
+    return 0;
+}
+
+int del_data()
+{
+    return 0;
+}

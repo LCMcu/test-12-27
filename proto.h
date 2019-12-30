@@ -27,13 +27,24 @@
 #define CNT_SIZE    6
 #define MAX_LEN    1024
 
-
 typedef struct regdate
 {
     char name[NAME_SIZE];
     char count[CNT_SIZE];
     char pwd[PWD_SIZE];
 }reg_date_t;
+
+
+typedef struct device_data
+{
+    uint8_t device_id;
+    char device_addr[64];
+    float temp;
+    float hum;
+    int PM25;
+    int dp_temp;  //露点温度
+    
+}DEVICE_DATA;
 
 #endif
 

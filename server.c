@@ -218,7 +218,6 @@ static int add2pool(int sd)
 			close(newsd);
 		}
 	}
-
 	return 0;
 }
 /*向用户信息表中添加新用户信息*/

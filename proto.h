@@ -43,7 +43,8 @@ typedef struct device_data
     float hum;
     int PM25;
     int dp_temp;  //露点温度
-    
+    int smog;     //烟雾
+    uint8_t dip_fire;      //
 }DEVICE_DATA;
 
 #endif

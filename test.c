@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sqlite3.h>
+#include "proto.h"
+
+int creat_table(sqlite3 *db, char *table);
 
 int main(int argc, char **argv)
 {
@@ -19,16 +22,16 @@ int main(int argc, char **argv)
     }
     else
         printf("open DB test ok \r\n");
-
+   /* 
     sql = "CREATE TABLE COMPANY("
           "ID INT PRIMARY KEY     NOT NULL,"
           "NAME           TEXT    NOT NULL,"
           "AGE            INT     NOT NULL,"
           "ADDRESS        CHAR(50),"
           "SALARY         REAL );";
-
+*/
     /* Execute SQL statement */
-    ret = sqlite3_exec(db, sql, NULL, 0, &zErrMsg);
+  /*  ret = sqlite3_exec(db, sql, NULL, 0, &zErrMsg);
     if (ret != SQLITE_OK)
     {
         fprintf(stderr, "SQL error: %s\n", zErrMsg);
@@ -38,6 +41,9 @@ int main(int argc, char **argv)
     {
         fprintf(stdout, "Table created successfully\n");
     }
+    */
+
+    creat_table(db,"test1");
     sqlite3_close(db); //关闭数据库
     return 0;
 }
@@ -45,19 +51,28 @@ int main(int argc, char **argv)
 int creat_table(sqlite3 *db, char *table)
 {
     int ret=0;
-    char sql[128]={0};
+    char sql[512]={0};
     char *errmsg=NULL;
     
-    fprintf(sql, "create table if not exists mytable (id integer primary key,name text);");
+    sprintf(sql, "create table if not exists %s (\
+    id integer primary key, device_id integer, \
+    device_addr text, temp interger, hum interger, \
+    dp_temp interger, dip_fire integer, smog integer,\
+    PM25 integer);", table);
 	ret = sqlite3_exec(db,sql,NULL,NULL,&errmsg);
  
 	if(ret != SQLITE_OK)
 	{
-		printf("create table error : %s\n",errmsg);
-		exit(-1);
+        #ifdef DEBUG
+		    printf("create table error : %s\n",errmsg);
+		#endif
+        return ret;
 	}
-
-    return 0;
+    #ifdef DEBUG
+        printf("create table ok : %s\n",errmsg);
+    #endif
+    
+    return ret;
 }
 
 int insert_data()

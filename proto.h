@@ -27,6 +27,8 @@
 #define CNT_SIZE    6
 #define MAX_LEN    1024
 
+#define DEBUG       1
+
 typedef struct regdate
 {
     char name[NAME_SIZE];
@@ -37,14 +39,15 @@ typedef struct regdate
 
 typedef struct device_data
 {
-    uint8_t device_id;
     char device_addr[64];
-    float temp;
-    float hum;
+    int device_id;
+    uint8_t temp;
+    uint8_t hum;
+    int8_t dp_temp;        //露点温度
+    uint8_t dip_fire;      //浸水—火光开关量  第0位 dip   第1位 fire    1 有信号   0无信号
+    int smog;              //烟雾
     int PM25;
-    int dp_temp;  //露点温度
-    int smog;     //烟雾
-    uint8_t dip_fire;      //
+    
 }DEVICE_DATA;
 
 #endif

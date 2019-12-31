@@ -39,6 +39,7 @@ typedef struct regdate
 
 typedef struct device_data
 {
+    char device_name[64];
     char device_addr[64];
     int device_id;
     uint8_t temp;
